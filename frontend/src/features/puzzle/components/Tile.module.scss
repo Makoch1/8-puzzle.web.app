@@ -1,4 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+$hover-bg: grey;
+
 .tile {
+  border: 2px solid black;
+  margin: 5px;
+
   width: 100px;
   height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-family: "Orbitron";
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
+
+.tile:hover {
+  background: $hover-bg;
 }
