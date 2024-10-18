@@ -2,23 +2,40 @@ import { useState } from "react";
 import { Tile } from "./Tile";
 import styles from './Board.module.scss'
 import { createBoard } from "../utils/createBoard";
+import { search2D } from "../utils/search2D";
+import { isAdjacent } from "../utils/isAdjacent";
 
 export function Board() {
   const [board, setBoard] = useState(createBoard());
 
-  const tiles = board.map(row => {
+  const tiles = board.map((row, i) => {
     return (
-      <div className={styles['board-row']}>
-        {row.map(num => <Tile number={num} />)}
+      <div className={styles['board-row']} key={i}>
+        {row.map((num, j) => <Tile number={num} setter={createSetter(i, j)} key={j} />)}
       </div >
     )
   })
 
-  // TODO: create setter curried funciton, a state for the zero's index, and a function for searching a 2d array
-  function createSetter(x: number, y: number) {
-    function setter(num: number) {
+  function createSetter(i: number, j: number) {
+    function setter() {
       const newBoard = [...board];
+
+      // find the indexes of zero (the blank tile)
+      const zeroIndex = search2D(board, 0);
+
+      // check first if it is a valid move (tile is adjacent to blank tile)
+      if (!isAdjacent(board, i, j, 0)) {
+        return;
+      }
+
+      // swap the number, with the blank space
+      newBoard[zeroIndex[0]][zeroIndex[1]] = board[i][j];
+      newBoard[i][j] = 0;
+
+      setBoard(newBoard);
     }
+
+    return setter;
   }
 
   return (
