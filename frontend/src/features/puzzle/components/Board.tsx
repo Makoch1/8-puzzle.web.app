@@ -4,9 +4,18 @@ import styles from './Board.module.scss'
 import { createBoard } from "../utils/createBoard";
 import { search2D } from "../utils/search2D";
 import { isAdjacent } from "../utils/isAdjacent";
+import { isEqualBoard } from "../utils/isEqualBoard";
 
-export function Board() {
-  const [board, setBoard] = useState(createBoard());
+/* TODO: Change this somehow */
+const goalBoard = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 0]
+];
+
+export function Board({ frozen = false, initialBoard = createBoard() }) {
+  const [board, setBoard] = useState(initialBoard);
+  const [isGoal, setIsGoal] = useState(false);
 
   const tiles = board.map((row, i) => {
     return (
@@ -20,17 +29,20 @@ export function Board() {
     function setter() {
       const newBoard = [...board];
 
-      // find the indexes of zero (the blank tile)
+      // -- Find the indexes of zero (the blank tile)
       const zeroIndex = search2D(board, 0);
 
-      // check first if it is a valid move (tile is adjacent to blank tile)
+      // -- Check first if it is a valid move (tile is adjacent to blank tile)
       if (!isAdjacent(board, i, j, 0)) {
         return;
       }
 
-      // swap the number, with the blank space
+      // -- Swap the number, with the blank space
       newBoard[zeroIndex[0]][zeroIndex[1]] = board[i][j];
       newBoard[i][j] = 0;
+
+      // -- Check if board is equal to goal state
+      setIsGoal(isEqualBoard(goalBoard, newBoard));
 
       setBoard(newBoard);
     }
@@ -41,6 +53,7 @@ export function Board() {
   return (
     <>
       {tiles}
+      {isGoal ? <p>Congrats</p> : <></>}
     </>
   )
 }

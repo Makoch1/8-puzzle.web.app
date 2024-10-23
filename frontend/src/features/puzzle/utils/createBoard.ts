@@ -1,4 +1,7 @@
-export function createBoard() {
+/**
+ * Creates a randomized 3x3 board. Numbers 1 - 8, plus 0.
+ */
+export function createBoard(): number[][] {
   const board: number[][] = []
 
   const numbers = Array.from(Array(9).keys());
