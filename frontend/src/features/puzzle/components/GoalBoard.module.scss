@@ -1,0 +1,26 @@
+@import '../../../variables';
+
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: "Orbitron";
+  width: 33dvw;
+}
+
+.row {
+  display: flex;
+}
+
+.tile {
+  border: 2px solid;
+  font-size: 1.5rem;
+  height: 75px;
+  margin: 2px;
+  width: 75px;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 1rem;
+}

@@ -57,8 +57,8 @@ export function Board({ isComplete, move }: PropTypes) {
   }
 
   return (
-    <>
+    <div className={styles.board}>
       {tiles}
-    </>
+    </div>
   )
 }
