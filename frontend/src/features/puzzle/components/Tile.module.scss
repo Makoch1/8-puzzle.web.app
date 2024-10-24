@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import "../../../variables";
+
 $hover-bg: grey;
+$win-bg: #30d148;
 
 .tile {
   border: 2px solid black;
-  margin: 5px;
+  margin: 10px 0px 0px 10px;
 
   width: 100px;
   height: 100px;
@@ -19,6 +21,20 @@ $hover-bg: grey;
   }
 }
 
-.tile:hover {
+/* not(.tile-win) is there so that tile does not have hover effect when goal state is met 
+ to emphasize to the user that board is frozen when win condition is met. */
+.tile:not(.tile-win):hover {
   background: $hover-bg;
+  cursor: pointer;
+}
+
+.tile-win {
+  background: $win-bg;
+
+  margin-top: 2px;
+  margin-left: 2px;
+
+  transition: margin-top 0.5s ease-in 0.5s, // margin shrinks vertically first. delayed by 0.5s.
+    margin-left 0.5s ease-in 1s, // margin then shrinks horizontally. delayed by 1s to wait for vertical shrink.
+    background 0.5s ease-in 1.5s; // bg-color is last to change.
 }

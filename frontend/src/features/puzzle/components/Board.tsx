@@ -6,16 +6,17 @@ import { search2D } from "../utils/search2D";
 import { isAdjacent } from "../utils/isAdjacent";
 
 type PropTypes = {
+  isComplete: boolean,
   move: (newBoard: number[][]) => void,
 }
 
-export function Board({ move }: PropTypes) {
+export function Board({ isComplete, move }: PropTypes) {
   const [board, setBoard] = useState(createBoard());
 
   const tiles = board.map((row, i) => {
     return (
       <div className={styles['board-row']} key={i}>
-        {row.map((num, j) => <Tile number={num} updater={createUpdater(i, j)} key={j} />)}
+        {row.map((num, j) => <Tile isComplete={isComplete} number={num} updater={createUpdater(i, j)} key={j} />)}
       </div >
     )
   })

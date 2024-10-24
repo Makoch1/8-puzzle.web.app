@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Board } from "./Board";
+import styles from './Puzzle.module.scss'
 import { isEqualBoard } from "../utils/isEqualBoard";
 
 // TODO: soon, change this to be more dynamic
@@ -23,9 +24,13 @@ export function Puzzle() {
   return (
     <>
       <Board
+        isComplete={isComplete}
         move={move} />
-      <p>{moveCount}</p>
-      <p>{isComplete ? "Congrats" : ""}</p>
+      {
+        isComplete
+          ? <p className={styles.subtext}>Puzzle finished in <span className={styles.counter}>{moveCount}</span> moves.</p>
+          : <p className={styles.subtext}>Moves <span className={styles.counter}>{moveCount}</span></p>
+      }
     </>
   )
 }
