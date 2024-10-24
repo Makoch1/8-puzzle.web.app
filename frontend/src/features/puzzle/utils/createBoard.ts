@@ -1,3 +1,5 @@
+import { isSolvable } from "./isSolvable";
+
 /**
  * Creates a randomized 3x3 board. Numbers 1 - 8, plus 0.
  */
@@ -16,5 +18,6 @@ export function createBoard(): number[][] {
     }
   }
 
-  return board;
+  // check if it is solvable first, if not, recursively call createBoard again
+  return isSolvable(board) ? board : createBoard();
 }
