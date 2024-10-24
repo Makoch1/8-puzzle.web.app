@@ -2,12 +2,12 @@ import styles from './Tile.module.scss'
 
 type PropTypes = {
   number: number,
-  setter: Function,
+  updater: Function,
 }
 
-export function Tile({ number, setter }: PropTypes) {
+export function Tile({ number, updater }: PropTypes) {
   return (
-    <div className={styles.tile} onClick={() => setter()}>
+    <div className={styles.tile} onClick={() => updater()}>
       <p>{number == 0 ? ' ' : number}</p>
     </div>
   )

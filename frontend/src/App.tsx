@@ -1,11 +1,11 @@
 import './App.css'
-import { Board } from './features/puzzle/components/Board'
+import { Puzzle } from './features/puzzle/components/Puzzle'
 
 function App() {
 
   return (
     <>
-      <Board />
+      <Puzzle />
     </>
   )
 }
