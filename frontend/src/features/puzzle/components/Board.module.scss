@@ -2,9 +2,21 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  width: 33dvw;
+  row-gap: 10px;
+  width: fit-content;
+}
+
+.board-win {
+  row-gap: 2px;
+  transition: row-gap 0.5s ease-in 0.2s;
 }
 
 .board-row {
+  column-gap: 10px;
   display: flex;
+}
+
+.board-row-win {
+  column-gap: 2px;
+  transition: column-gap 0.5s ease-in 0.7s;
 }

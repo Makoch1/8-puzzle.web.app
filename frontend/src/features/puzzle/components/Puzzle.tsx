@@ -3,15 +3,19 @@ import { Board } from "./Board";
 import styles from './Puzzle.module.scss'
 import { isEqualBoard } from "../utils/isEqualBoard";
 import { GoalBoard } from "./GoalBoard";
+import { createBoardFromID } from "../utils/createBoardFromID";
 
-// TODO: soon, change this to be more dynamic
 const goalBoard = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 0]
 ];
 
-export function Puzzle() {
+type propTypes = {
+  puzzleId: string
+}
+
+export function Puzzle({ puzzleId }: propTypes) {
   const [moveCount, setMoveCount] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
 
@@ -23,9 +27,10 @@ export function Puzzle() {
   }
 
   return (
-    <div className={styles.main}>
+    <div className={isComplete ? `${styles.main} ${styles['main-win']}` : styles.main}>
       <div>
         <Board
+          startBoard={createBoardFromID(puzzleId)}
           isComplete={isComplete}
           move={move} />
         {

@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { Tile } from "./Tile";
 import styles from './Board.module.scss'
-import { createBoard } from "../utils/createBoard";
 import { search2D } from "../utils/search2D";
 import { isAdjacent } from "../utils/isAdjacent";
 
 type PropTypes = {
+  startBoard: number[][],
   isComplete: boolean,
   move: (newBoard: number[][]) => void,
 }
 
-export function Board({ isComplete, move }: PropTypes) {
-  const [board, setBoard] = useState(createBoard());
+export function Board({ startBoard, isComplete, move }: PropTypes) {
+  const [board, setBoard] = useState(startBoard);
 
   const tiles = board.map((row, i) => {
+    const rowStyle = `${styles['board-row']} ${isComplete ? styles['board-row-win'] : ''}`
     return (
-      <div className={styles['board-row']} key={i}>
+      <div className={rowStyle} key={i}>
         {row.map((num, j) => <Tile isComplete={isComplete} number={num} updater={createUpdater(i, j)} key={j} />)}
       </div >
     )
@@ -57,7 +58,7 @@ export function Board({ isComplete, move }: PropTypes) {
   }
 
   return (
-    <div className={styles.board}>
+    <div className={isComplete ? `${styles.board} ${styles['board-win']}` : styles.board}>
       {tiles}
     </div>
   )

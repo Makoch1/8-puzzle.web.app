@@ -6,7 +6,12 @@
 }
 
 .main {
+  align-items: center;
   display: flex;
+  float: right;
+
+  height: 100dvh;
+  width: 66%;
 }
 
 .subtext {

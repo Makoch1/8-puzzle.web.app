@@ -5,7 +5,6 @@ $win-bg: #30d148;
 
 .tile {
   border: 2px solid black;
-  margin: 10px 0px 0px 10px;
 
   width: 100px;
   height: 100px;
@@ -31,10 +30,5 @@ $win-bg: #30d148;
 .tile-win {
   background: $win-bg;
 
-  margin-top: 2px;
-  margin-left: 2px;
-
-  transition: margin-top 0.5s ease-in 0.5s, // margin shrinks vertically first. delayed by 0.5s.
-    margin-left 0.5s ease-in 1s, // margin then shrinks horizontally. delayed by 1s to wait for vertical shrink.
-    background 0.5s ease-in 1.5s; // bg-color is last to change.
+  transition: background 0.5s ease-in 1.2s; // bg-color is last to change.
 }
