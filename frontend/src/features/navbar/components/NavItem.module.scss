@@ -1,0 +1,35 @@
+.nav-item {
+  align-items: center;
+  display: flex;
+  padding: 0px 0.75rem;
+
+  height: 5rem;
+  min-width: fit-content;
+}
+
+.nav-item:hover:not(.nav-item-active) {
+  background: #b8b8c7;
+}
+
+.nav-item-active {
+  background: white;
+}
+
+.nav-item-icon {
+  height: 1.5rem;
+}
+
+.nav-item-name {
+  display: none;
+  text-wrap: nowrap;
+
+  color: black;
+
+  font-size: 1rem;
+  margin: 0 0.5rem;
+}
+
+// global so that cssmodule doesnt transform #navbar
+:global(#navbar):hover .nav-item-name {
+  display: block;
+}
