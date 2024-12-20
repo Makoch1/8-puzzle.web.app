@@ -1,5 +1,47 @@
 @import "../../../variables";
 
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+
+  animation: appear 1s ease-in forwards;
+
+  &-button {
+    flex: 1;
+
+    &>img {
+      height: 1rem;
+    }
+
+    &-red {
+      @extend .controls-button;
+      background: red;
+    }
+
+    &-green {
+      @extend .controls-button;
+      background: lightgreen;
+      color: white;
+      transition: color 0.3s ease-in;
+    }
+  }
+
+  &-hidden {
+    visibility: hidden;
+  }
+}
+
 .counter {
   font-family: "Orbitron";
   font-size: 2rem;
@@ -8,10 +50,10 @@
 .main {
   align-items: center;
   display: flex;
-  float: right;
+  margin: auto;
 
   height: 100dvh;
-  width: 66%;
+  width: fit-content;
 }
 
 .subtext {

@@ -7,7 +7,7 @@ export const Route = createRootRoute({
       <div style={{ display: 'flex', minWidth: '10%' }}>
         <Navbar />
       </div>
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '80%' }}>
         <Outlet />
       </div>
     </div>

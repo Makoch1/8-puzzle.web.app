@@ -5,6 +5,9 @@ import { isEqualBoard } from "../utils/isEqualBoard";
 import { GoalBoard } from "./GoalBoard";
 import { createBoardFromID } from "../utils/createBoardFromID";
 
+import copyIcon from '../assets/copy.png'
+import restartIcon from '../assets/restart.png'
+
 const goalBoard = [
   [1, 2, 3],
   [4, 5, 6],
@@ -18,12 +21,18 @@ type propTypes = {
 export function Puzzle({ puzzleId }: propTypes) {
   const [moveCount, setMoveCount] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   function move(newBoard: number[][]): void {
     setMoveCount(moveCount + 1);
     setIsComplete(
       isEqualBoard(newBoard, goalBoard)
     );
+  }
+
+  function handleCopy() {
+    navigator.clipboard.writeText(location.href)
+    setIsCopied(true)
   }
 
   return (
@@ -38,6 +47,20 @@ export function Puzzle({ puzzleId }: propTypes) {
             ? <p className={styles.subtext}>Puzzle finished in <span className={styles.counter}>{moveCount}</span> moves.</p>
             : <p className={styles.subtext}>Moves <span className={styles.counter}>{moveCount}</span></p>
         }
+        { /* CONTROLS FOR WHEN USER COMPLETES PUZZLE
+          /* Not using conditional rendering bc doing so makes the board adjust and jump around
+          /* Doing it this way ensures smoothness */}
+        <div className={isComplete ? styles['controls'] : styles['controls-hidden']}>
+          <button className={styles['controls-button-red']} onClick={() => window.location.reload()}>
+            <img src={restartIcon} />
+          </button>
+          <a href="/puzzle/">
+            <button>New Puzzle</button>
+          </a>
+          <button className={isCopied ? styles['controls-button-green'] : styles['controls-button']} onClick={handleCopy}>
+            <img src={copyIcon} />
+          </button>
+        </div>
       </div>
       <GoalBoard board={goalBoard} />
     </div>
