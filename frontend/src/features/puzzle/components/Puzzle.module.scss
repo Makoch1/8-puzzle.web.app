@@ -18,10 +18,15 @@
   animation: appear 1s ease-in forwards;
 
   &-button {
+    border: none;
     flex: 1;
 
     &>img {
       height: 1rem;
+    }
+
+    &:hover {
+      filter: brightness(80%);
     }
 
     &-red {

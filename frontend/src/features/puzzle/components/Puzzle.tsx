@@ -55,7 +55,7 @@ export function Puzzle({ puzzleId }: propTypes) {
             <img src={restartIcon} />
           </button>
           <a href="/puzzle/">
-            <button>New Puzzle</button>
+            <button className={styles['controls-button']}>New Puzzle</button>
           </a>
           <button className={isCopied ? styles['controls-button-green'] : styles['controls-button']} onClick={handleCopy}>
             <img src={copyIcon} />
