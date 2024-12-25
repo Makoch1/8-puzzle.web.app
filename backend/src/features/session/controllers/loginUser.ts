@@ -6,6 +6,7 @@ import { database } from "../../../database";
 import { RowDataPacket } from "mysql2";
 import { TokenData } from '../../../types/TokenData';
 import { LoginResponse } from '../../../types/LoginResponse';
+import { JWT_SECRET } from '../../../config';
 
 export const loginUser = async (req: Request<{}, {}, UserLoginBody>, res: Response<LoginResponse>) => {
     // get password hash of specific user
@@ -33,7 +34,7 @@ export const loginUser = async (req: Request<{}, {}, UserLoginBody>, res: Respon
     const tokenData: TokenData = {
         userID: results[0][0],
     };
-    const token = jwt.sign(tokenData, process.env.JWT_SECRET, { expiresIn: '3d' })
+    const token = jwt.sign(tokenData, JWT_SECRET, { expiresIn: '3d' })
 
     res.status(200).json({ token: token });
 }

@@ -10,3 +10,5 @@ export const DB_CONFIG: ConnectionOptions = {
     database: process.env.DB_DATABASE || '8-puzzle',
     rowsAsArray: true
 };
+
+export const JWT_SECRET = process.env.JWT_SECRET;
