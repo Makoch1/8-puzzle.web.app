@@ -1,21 +1,38 @@
+@use "../../../variables";
+
 .navbar {
-  /* placement */
+  display: flex;
+
   align-self: center;
-  margin: 10px;
+  margin: 10px auto;
 
-  /* aesthetics */
   background: #9b9aaf;
-  overflow: hidden;
-
-  /* dimensions */
   border-radius: 10px;
-  height: fit-content;
-  max-width: 3rem; // 1.5 rem img size + 0.75 rem padding each side
-  padding: 10px 0px;
+  width: fit-content;
+}
 
-  &:hover {
-    max-width: 100%;
-    position: absolute;
-    transition: max-width 0.5s ease-in;
+@media (min-width: variables.$md-breakpoint) {
+  .navbar {
+    display: block;
+
+    /* placement */
+    align-self: center;
+    margin: 10px;
+
+    /* aesthetics */
+    background: #9b9aaf;
+    overflow: hidden;
+
+    /* dimensions */
+    border-radius: 10px;
+    height: fit-content;
+    max-width: 3rem; // 1.5 rem img size + 0.75 rem padding each side
+    padding: 10px 0px;
+
+    &:hover {
+      max-width: 100%;
+      position: absolute;
+      transition: max-width 0.5s ease-in;
+    }
   }
 }

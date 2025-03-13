@@ -1,0 +1,27 @@
+@use "../variables";
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+
+  @media (min-width: variables.$md-breakpoint) {
+    flex-direction: row;
+  }
+}
+
+.nav-container {
+
+  @media (min-width: variables.$md-breakpoint) {
+    display: flex;
+    min-width: 10%
+  }
+}
+
+.outlet-container {
+  @media (min-width: variables.$md-breakpoint) {
+    display: flex;
+    min-height: 100dvh;
+    width: 80%;
+  }
+}

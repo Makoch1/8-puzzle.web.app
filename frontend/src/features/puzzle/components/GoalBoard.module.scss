@@ -1,4 +1,4 @@
-@import '../../../variables';
+@use '../../../variables';
 
 @keyframes appear-from-right {
   to {
@@ -17,6 +17,7 @@
 }
 
 .container {
+  background-color: white;
   display: flex;
   flex-direction: row-reverse;
 
@@ -59,7 +60,11 @@
   font-family: "Orbitron";
   align-self: center;
   row-gap: 2px;
-  width: 33dvw;
+  width: 100dvw;
+
+  @media (min-width: variables.$md-breakpoint) {
+    width: 33dvw;
+  }
 }
 
 .board-row {

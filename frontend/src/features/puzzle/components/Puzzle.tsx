@@ -42,11 +42,19 @@ export function Puzzle({ puzzleId }: propTypes) {
           startBoard={createBoardFromID(puzzleId)}
           isComplete={isComplete}
           move={move} />
-        {
-          isComplete
-            ? <p className={styles.subtext}>Puzzle finished in <span className={styles.counter}>{moveCount}</span> moves.</p>
-            : <p className={styles.subtext}>Moves <span className={styles.counter}>{moveCount}</span></p>
-        }
+        <div className={styles['puzzle-details']}>
+          {
+            isComplete
+              ? <p className={styles.subtext}>Puzzle finished in <span className={styles.counter}>{moveCount}</span> moves.</p>
+              : <p className={styles.subtext}><span className={styles.counter}>{moveCount}</span> moves</p>
+          }
+          {
+            !isComplete &&
+            <button className={styles['reset-btn']} onClick={() => window.location.reload()}>
+              Reset
+            </button>
+          }
+        </div>
         { /* CONTROLS FOR WHEN USER COMPLETES PUZZLE
           /* Not using conditional rendering bc doing so makes the board adjust and jump around
           /* Doing it this way ensures smoothness */}

@@ -1,7 +1,6 @@
 import styles from "./Navbar.module.scss"
 import { Navlink } from "../types/Navlink"
 import { NavItem } from "./NavItem"
-import { useState } from "react"
 
 // icons
 import dailyIcon from "../assets/daily_icon.png"
