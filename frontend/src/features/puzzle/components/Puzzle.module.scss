@@ -52,6 +52,24 @@
   font-size: 2rem;
 }
 
+.puzzle-details {
+  display: flex;
+
+  .reset-btn {
+    background: white;
+    color: red;
+    margin: auto 0;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    &:hover {
+      border-color: white;
+      background: red;
+      color: white;
+    }
+  }
+}
+
 .main {
   align-items: center;
   display: flex;
@@ -64,4 +82,5 @@
 .subtext {
   font-size: 1rem;
   font-style: italic;
+  margin-right: auto;
 }
