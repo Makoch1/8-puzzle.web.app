@@ -22,9 +22,17 @@ $win-bg: #30d148;
 
 /* not(.tile-win) is there so that tile does not have hover effect when goal state is met 
  to emphasize to the user that board is frozen when win condition is met. */
-.tile:not(.tile-win):hover {
-  background: $hover-bg;
-  cursor: pointer;
+@media not all and (hover: none) {
+  .tile:not(.tile-win):hover {
+    background: $hover-bg;
+    cursor: pointer;
+  }
+}
+
+@media (hover: none) {
+  .tile:not(.tile-win):active {
+    background: $hover-bg;
+  }
 }
 
 .tile-win {
