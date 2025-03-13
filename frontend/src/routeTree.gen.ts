@@ -11,11 +11,32 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ProfileImport } from './routes/profile'
+import { Route as LeaderboardsImport } from './routes/leaderboards'
+import { Route as DailyImport } from './routes/daily'
 import { Route as IndexImport } from './routes/index'
 import { Route as PuzzleIndexImport } from './routes/puzzle/index'
 import { Route as PuzzlePuzzleIdImport } from './routes/puzzle/$puzzleId'
 
 // Create/Update Routes
+
+const ProfileRoute = ProfileImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LeaderboardsRoute = LeaderboardsImport.update({
+  id: '/leaderboards',
+  path: '/leaderboards',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DailyRoute = DailyImport.update({
+  id: '/daily',
+  path: '/daily',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -46,6 +67,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/daily': {
+      id: '/daily'
+      path: '/daily'
+      fullPath: '/daily'
+      preLoaderRoute: typeof DailyImport
+      parentRoute: typeof rootRoute
+    }
+    '/leaderboards': {
+      id: '/leaderboards'
+      path: '/leaderboards'
+      fullPath: '/leaderboards'
+      preLoaderRoute: typeof LeaderboardsImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileImport
+      parentRoute: typeof rootRoute
+    }
     '/puzzle/$puzzleId': {
       id: '/puzzle/$puzzleId'
       path: '/puzzle/$puzzleId'
@@ -67,12 +109,18 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/daily': typeof DailyRoute
+  '/leaderboards': typeof LeaderboardsRoute
+  '/profile': typeof ProfileRoute
   '/puzzle/$puzzleId': typeof PuzzlePuzzleIdRoute
   '/puzzle': typeof PuzzleIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/daily': typeof DailyRoute
+  '/leaderboards': typeof LeaderboardsRoute
+  '/profile': typeof ProfileRoute
   '/puzzle/$puzzleId': typeof PuzzlePuzzleIdRoute
   '/puzzle': typeof PuzzleIndexRoute
 }
@@ -80,27 +128,55 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/daily': typeof DailyRoute
+  '/leaderboards': typeof LeaderboardsRoute
+  '/profile': typeof ProfileRoute
   '/puzzle/$puzzleId': typeof PuzzlePuzzleIdRoute
   '/puzzle/': typeof PuzzleIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/puzzle/$puzzleId' | '/puzzle'
+  fullPaths:
+    | '/'
+    | '/daily'
+    | '/leaderboards'
+    | '/profile'
+    | '/puzzle/$puzzleId'
+    | '/puzzle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/puzzle/$puzzleId' | '/puzzle'
-  id: '__root__' | '/' | '/puzzle/$puzzleId' | '/puzzle/'
+  to:
+    | '/'
+    | '/daily'
+    | '/leaderboards'
+    | '/profile'
+    | '/puzzle/$puzzleId'
+    | '/puzzle'
+  id:
+    | '__root__'
+    | '/'
+    | '/daily'
+    | '/leaderboards'
+    | '/profile'
+    | '/puzzle/$puzzleId'
+    | '/puzzle/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DailyRoute: typeof DailyRoute
+  LeaderboardsRoute: typeof LeaderboardsRoute
+  ProfileRoute: typeof ProfileRoute
   PuzzlePuzzleIdRoute: typeof PuzzlePuzzleIdRoute
   PuzzleIndexRoute: typeof PuzzleIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DailyRoute: DailyRoute,
+  LeaderboardsRoute: LeaderboardsRoute,
+  ProfileRoute: ProfileRoute,
   PuzzlePuzzleIdRoute: PuzzlePuzzleIdRoute,
   PuzzleIndexRoute: PuzzleIndexRoute,
 }
@@ -116,12 +192,24 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/daily",
+        "/leaderboards",
+        "/profile",
         "/puzzle/$puzzleId",
         "/puzzle/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/daily": {
+      "filePath": "daily.tsx"
+    },
+    "/leaderboards": {
+      "filePath": "leaderboards.tsx"
+    },
+    "/profile": {
+      "filePath": "profile.tsx"
     },
     "/puzzle/$puzzleId": {
       "filePath": "puzzle/$puzzleId.tsx"

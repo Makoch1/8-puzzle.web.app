@@ -9,12 +9,6 @@ export const Route = createFileRoute('/puzzle/$puzzleId')({
     if (!isSolvable(params.puzzleId)) {
       throw new Error("Invalid puzzle")
     }
-
-    // add puzzle_id to backend
-    const uri = `${import.meta.env.VITE_API_URI}/puzzle/${params.puzzleId}`
-    try {
-      axios.post(uri);
-    } catch (e) { };
   },
   component: () => {
     const { puzzleId } = Route.useParams()
